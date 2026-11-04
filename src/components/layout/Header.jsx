@@ -8,8 +8,6 @@ import {
   X, 
   ChevronDown 
 } from 'lucide-react';
-
-// Logo Image Import
 import logoImg from '../../assets/iamges/logoimg.png';
 
 const Header = () => {
@@ -61,15 +59,18 @@ const Header = () => {
     <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-40 font-['Plus_Jakarta_Sans',sans-serif] shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        {/* Left Side: Brand Logo Image */}
+        {/* Left Side: Brand Logo */}
         <div className="flex items-center gap-3">
-          <a href="/" className="flex items-center gap-2">
-            <img 
-              src={logoImg} 
+          <a
+            href="/"
+            aria-label="Foxtale home"
+            className="flex shrink-0 items-center"
+          >
+            <img
+              src={logoImg}
               alt="Foxtale"
-              className="h-12 sm:h-14 w-auto shrink-0 object-contain"
+              className="h-8 w-auto object-contain sm:h-9"
             />
-           
           </a>
         </div>
 
@@ -180,11 +181,11 @@ const Header = () => {
             <motion.nav
               id="mobile-navigation"
               aria-label="Mobile navigation"
-              initial={{ x: '-100%' }}
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="fixed left-0 top-20 bottom-0 z-50 w-[min(85vw,360px)] overflow-y-auto border-r border-gray-200 bg-white px-6 py-4 shadow-2xl lg:hidden"
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              className="fixed right-0 top-20 bottom-0 z-50 w-[min(85vw,360px)] touch-pan-y overflow-x-hidden overflow-y-auto overscroll-contain border-l border-gray-200 bg-white px-6 py-4 shadow-2xl lg:hidden"
             >
               <div className="mb-3 flex items-center justify-end gap-3 border-b border-gray-100 pb-3">
                 <button aria-label="Search" className="p-2 text-gray-700 hover:text-black transition-colors rounded-full hover:bg-gray-100">

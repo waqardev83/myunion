@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkles, ArrowRight, Gift, ShieldCheck, Heart, Clock } from 'lucide-react';
 
-// Hero Product Showcase Image Import (Apni image ka path yahan check kar lein)
+// Background Image Import (Apni image ka path yahan check kar lein)
 import heroBgImage from '../assets/iamges/BGimg.png';
 
 const HeroSection = () => {
   const [activeBenefit, setActiveBenefit] = useState(null);
+  
   const benefits = [
     {
       id: 'surprises',
@@ -35,25 +36,32 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative w-full min-h-[90vh] bg-[#FCE4EC] overflow-hidden font-['Plus_Jakarta_Sans',sans-serif] flex items-center">
+    <section 
+      className="relative flex min-h-[90vh] w-full items-center overflow-hidden bg-[#FCE4EC] font-['Plus_Jakarta_Sans',sans-serif]"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 hidden bg-contain bg-top bg-no-repeat md:block lg:bg-cover lg:bg-center"
+        style={{ backgroundImage: `url(${heroBgImage})` }}
+      />
       
-      {/* Background Glow / Neon Lighting Effect */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[350px] sm:w-[500px] md:w-[650px] h-[350px] sm:h-[500px] md:h-[650px] bg-white/40 rounded-full blur-[100px] pointer-events-none" />
+      {/* Light Overlay taaki text par readability achi ho */}
+      <div className="absolute inset-0 bg-[#FCE4EC]/50 sm:bg-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-12 py-12 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-12 py-10 md:py-14 relative z-10">
         
-        {/* Left Column: Animated Scrollable Text Content (Span 6) */}
-        <div className="lg:col-span-6 flex flex-col items-start justify-center text-left">
+        {/* Text Content Column */}
+        <div className="max-w-[390px] flex flex-col items-start justify-center text-left">
           
           {/* Top Live Sale Pill Badge */}
           <motion.div 
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-pink-200 shadow-sm mb-6"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/65 backdrop-blur-sm border border-pink-200/70 shadow-sm mb-4"
           >
             <Sparkles className="w-4 h-4 text-[#FA3B7B]" />
-            <span className="text-xs sm:text-sm font-bold text-[#FA3B7B] tracking-wide">
+            <span className="text-xs sm:text-sm font-semibold text-[#FA3B7B] tracking-wide">
               WTFox Sale is Live!
             </span>
           </motion.div>
@@ -63,30 +71,30 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full max-h-[420px] overflow-y-auto pr-2 custom-scrollbar space-y-3"
+            className="w-full space-y-3"
           >
             {/* Main Headings */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111111] tracking-tight leading-[1.1]">
+            <h1 className="text-4xl sm:text-[44px] lg:text-5xl font-extrabold text-[#111111] tracking-tight leading-[1.08]">
               DAILY GIFTS <br />
               <span className="text-[#FA3B7B]">WORTH UP TO</span>
             </h1>
 
-            <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111111] tracking-tight pb-1">
+            <div className="text-5xl sm:text-[54px] lg:text-6xl font-extrabold text-[#111111] tracking-tight leading-none pb-1">
               ₹10,000*
             </div>
 
             {/* Description Paragraph */}
-            <p className="text-gray-700 text-sm sm:text-base font-normal max-w-lg leading-relaxed pt-2">
+            <p className="text-gray-900 text-xs sm:text-[13px] font-medium max-w-[350px] leading-relaxed pt-1">
               Effective skincare made to target real skin concerns from acne and pigmentation to dullness, dryness and uneven texture.
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center gap-3 pt-3">
               <motion.a
                 href="#shop"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#FA3B7B] hover:bg-[#e0326e] text-white font-semibold text-sm rounded-full shadow-lg shadow-pink-500/30 transition-all"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-[#FA3B7B] hover:bg-[#e0326e] text-white font-semibold text-xs rounded-full shadow-lg shadow-pink-500/30 transition-all"
               >
                 <span>Shop Now</span>
                 <ArrowRight className="w-4 h-4" />
@@ -96,7 +104,7 @@ const HeroSection = () => {
                 href="#explore"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-white hover:bg-gray-50 text-gray-900 font-semibold text-sm rounded-full border border-gray-300 shadow-sm transition-all"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-white/90 backdrop-blur-sm hover:bg-gray-50 text-gray-900 font-semibold text-xs rounded-full border border-white shadow-sm transition-all"
               >
                 <span>Explore More</span>
                 <ArrowRight className="w-4 h-4" />
@@ -109,7 +117,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-4 gap-3 sm:gap-6 pt-10 border-t border-pink-200/60 mt-8 w-full"
+            className="grid grid-cols-4 gap-2 sm:gap-5 mt-6 w-full max-w-[390px]"
           >
             {benefits.map(({ id, title, description, icon: Icon }) => (
               <motion.div
@@ -128,11 +136,11 @@ const HeroSection = () => {
                   onClick={() => setActiveBenefit(activeBenefit === id ? null : id)}
                   whileHover={{ scale: 1.12, rotate: 5 }}
                   whileTap={{ scale: 0.94 }}
-                  className="mb-1.5 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#FA3B7B] shadow-sm ring-1 ring-pink-100 transition-shadow hover:shadow-lg hover:shadow-pink-200/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA3B7B] focus-visible:ring-offset-2"
+                  className="mb-1 flex h-7 w-7 items-center justify-center rounded-full border border-[#FA3B7B] bg-white/20 text-[#FA3B7B] transition-shadow hover:bg-white/70 hover:shadow-md hover:shadow-pink-200/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA3B7B] focus-visible:ring-offset-2"
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-3.5 w-3.5" />
                 </motion.button>
-                <span className="text-[11px] font-semibold text-gray-800 sm:text-xs">{title}</span>
+                <span className="text-[9px] font-medium leading-tight text-gray-900 sm:text-[10px]">{title}</span>
                 <AnimatePresence>
                   {activeBenefit === id && (
                     <motion.div
@@ -153,22 +161,6 @@ const HeroSection = () => {
             ))}
           </motion.div>
 
-        </div>
-
-        {/* Right Column: Background Product Image (Hidden on 'sm', Visible & Fixed on 'md' & 'lg') */}
-        <div className="hidden md:flex lg:col-span-6 items-center justify-center relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="relative w-full flex items-center justify-center"
-          >
-            <img
-              src={heroBgImage}
-              alt="WTFox Skincare and Merchandise Products Showcase"
-              className="w-full max-w-xl lg:max-w-2xl object-contain drop-shadow-2xl"
-            />
-          </motion.div>
         </div>
 
       </div>

@@ -1,24 +1,29 @@
 
-import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
-import Header from "./components/layout/Header.jsx";
-import Footer from "./components/layout/Footer.jsx";
-import TopHader from "./components/layout/TopHader.jsx";
-import Home from "./pages/Home.jsx";
+import Loader from "./components/Loader";
+import Header from "./components/layout/Header";
+import TopHader from "./components/layout/TopHader";
+import Footer from "./components/layout/Footer";
+import Home from "./pages/Home";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <div className="min-h-screen">
       <TopHader />
       <Header />
 
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <Home />
       </main>
 
       <Footer />
+      <AnimatePresence>
+        {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
     </div>
   );
 }
